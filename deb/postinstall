@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# symbolic link for cargo
+ln -s /usr/local/lib/cargo-nightly-x86_64-unknown-linux-gnu/cargo/bin/cargo /usr/local/bin/cargo
+
+# symbolic link for rustc
+ln -s /usr/local/lib/rustc-nightly-x86_64-unknown-linux-gnu/rustc/bin/rustc /usr/local/bin/rustc
+
+# symbolic link for rustdocs
+ln -s /usr/local/lib/rustc-nightly-x86_64-unknown-linux-gnu/rustc/bin/rustdoc /usr/local/bin/rustdoc
+
+# symbolic link for rust-gdb
+ln -s /usr/local/lib/rustc-nightly-x86_64-unknown-linux-gnu/rustc/bin/rust-gdb /usr/local/bin/rust-gdb
+
+mv /usr/local/lib/rust-std-nightly-x86_64-unknown-linux-gnu/rust-std-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/ /usr/local/lib/rustc-nightly-x86_64-unknown-linux-gnu/rustc/lib/rustlib/

@@ -17,6 +17,7 @@ make_comb = True
 make_exe = False
 make_pkg = False
 make_msi = False
+make_deb = False
 msi_sval = False # skip msi validation
 target = None
 
@@ -31,6 +32,8 @@ for arg in sys.argv:
         make_msi = True
     elif arg == "--msi-sval":
         msi_sval = True
+    elif arg == "--deb":
+        make_deb = True
     elif "--target" in arg:
         target = arg.split("=")[1]
 
@@ -40,6 +43,7 @@ print "combined: " + str(make_comb)
 print "exe: " + str(make_exe)
 print "pkg: " + str(make_pkg)
 print "msi: " + str(make_msi)
+print "deb: " + str(make_pkg)
 print
 
 if target is None:
@@ -432,3 +436,8 @@ if make_exe or make_msi:
 
         msifile = CFG_PACKAGE_NAME + "-" + CFG_BUILD + ".msi"
         move_file(exe_temp_dir + "/" + msifile, OUTPUT_DIR + "/" + msifile)
+
+if make_deb:
+    print "creating .deb"
+
+    run(["fpm", "s", "tar", "t", "deb", "prefix", "/usr/lib", "post-install", "deb/postinstall", "in/*.tar.gz"]
